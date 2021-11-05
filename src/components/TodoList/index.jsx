@@ -5,7 +5,7 @@ import { deleteTaskAction, getTasksAction } from '../../actions/actionCreators';
 
 function TodoList() {
     const dispatch = useDispatch();
-    const tasks = useSelector(state => state.tasks);
+    const {tasks, isFetching} = useSelector(state => state);
 
     const getTasks = () => {
         dispatch(getTasksAction());
@@ -17,7 +17,10 @@ function TodoList() {
 
     return (
         <div>
-            {tasks.map((task, index) => {
+            {isFetching? 
+            <h2>loading...</h2>
+            : 
+            tasks.map((task, index) => {
                 const deleteTask = () => {
                     dispatch(deleteTaskAction(task.id));
                 }
