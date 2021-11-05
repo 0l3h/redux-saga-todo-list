@@ -6,13 +6,12 @@ const tasks = [
 ];
 
 export const getTasks = () => {
-    return Promise.resolve({data: tasks});
+    return Promise.resolve({data: [...tasks]});
 };
 
 export const createTask = (task) => {
     const newTask = {...task, id: Date.now()};
     tasks.push(newTask);
-    console.log(tasks);
     return Promise.resolve({data: newTask});
 };
 
