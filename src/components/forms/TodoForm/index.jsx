@@ -30,13 +30,13 @@ function TodoForm() {
         <>
             {tasks.length}
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
-            {({errors, touched}) => 
-                <Form className={styles.todoForm}>
-                    <Field name='body' placeholder='Type in your task' className={calculateInputStyles(errors, touched)}/>
-                    <button type='submit' className={styles.submitButton}>Create</button>
-                    <ErrorMessage name='body' component='div' className={styles.errorMessage}/>
-                </Form>
-            }
+                {({errors, touched}) => 
+                    <Form className={styles.todoForm}>
+                        <Field name='body' placeholder='Type in your task' className={calculateInputStyles(errors, touched)}/>
+                        <button type='submit' className={styles.submitButton}>Create</button>
+                        <ErrorMessage name='body' component='div' className={styles.errorMessage}/>
+                    </Form>
+                }
             </Formik>
         </>
     )
