@@ -7,7 +7,7 @@ function ListItem(props) {
     return (
         <section className={styles.task}>
             <p className={styles.taskContent}>
-                <b>{task.content}</b>
+                <b>{task.body}</b>
             </p>
             <button className={styles.doneButton} onClick={deleteTask}>done</button>
         </section>

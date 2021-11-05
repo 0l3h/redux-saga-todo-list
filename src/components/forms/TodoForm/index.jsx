@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage} from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { createTaskAction } from '../../../actions/actionCreators';
 import styles from './TodoForm.module.sass';
@@ -8,6 +8,7 @@ import validationSchema from '../../../utils/validationSchemas';
 
 function TodoForm() {
     const dispatch = useDispatch();
+    const tasks = useSelector(state => state.tasks);
 
     const initialValues = {
         body: '',
@@ -21,21 +22,23 @@ function TodoForm() {
     const calculateInputStyles = (errors, touched) => 
         classNames(styles.input,
         {
-            [styles.inputValid]: touched.content && !errors.content,
-            [styles.inputInvalid]: touched.content && errors.content,
+            [styles.inputValid]: touched.body && !errors.body,
+            [styles.inputInvalid]: touched.body && errors.body,
         });
 
     return (
-        
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
+        <>
+            {tasks.length}
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitHandler}>
             {({errors, touched}) => 
                 <Form className={styles.todoForm}>
-                    <Field name='content' placeholder='Type in your task' className={calculateInputStyles(errors, touched)}/>
+                    <Field name='body' placeholder='Type in your task' className={calculateInputStyles(errors, touched)}/>
                     <button type='submit' className={styles.submitButton}>Create</button>
-                    <ErrorMessage name='content' component='div' className={styles.errorMessage}/>
+                    <ErrorMessage name='body' component='div' className={styles.errorMessage}/>
                 </Form>
             }
-        </Formik>
+            </Formik>
+        </>
     )
 }
 

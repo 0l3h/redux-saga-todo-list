@@ -13,11 +13,10 @@ function TodoList() {
 
     useEffect(() => {
         getTasks();
-    }, [tasks.length]);
+    }, []);
 
     return (
         <div>
-            {tasks.length}
             {tasks.map((task, index) => {
                 const deleteTask = () => {
                     dispatch(deleteTaskAction(task.id));
