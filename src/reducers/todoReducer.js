@@ -4,7 +4,7 @@ const initialState = {
     tasks: [],
     isFetching: false,
     error: null,
-}
+};
 
 const todoReducer = (state = initialState, action) => {
     const {type} = action;
@@ -37,7 +37,7 @@ const todoReducer = (state = initialState, action) => {
         case ACTION_TYPES.CREATE_TASK_SUCCESS: {
             const {tasks} = state;
             const {task} = action;
-            console.log(tasks);
+
             return {
                 ...state, 
                 tasks: [...tasks, {id: Date.now(), ...task}],
@@ -61,7 +61,6 @@ const todoReducer = (state = initialState, action) => {
             const {deletedTask} = action;
             const {tasks} = state;
             const newTasks = [...tasks];
-            console.log(`newTasks`, newTasks)
 
             newTasks.splice(newTasks.findIndex(task => task.id === deletedTask.id), 1);
 
@@ -81,7 +80,6 @@ const todoReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
-
+};
 
 export default todoReducer;
