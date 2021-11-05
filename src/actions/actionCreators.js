@@ -43,17 +43,18 @@ export const createTaskError = error => ({
 
 // ---------------- DELETE --------------
 
-export const deleteTaskAction = task => ({
+export const deleteTaskAction = id => ({
     type: ACTION_TYPES.DELETE_TASK_ACTION,
-    task,
+    id,
 });
 
 export const deleteTaskRequest = () => ({
     type: ACTION_TYPES.DELETE_TASK_REQUEST,
 });
 
-export const deleteTaskSuccess = () => ({
+export const deleteTaskSuccess = deletedTask => ({
     type: ACTION_TYPES.DELETE_TASK_SUCCESS,
+    deletedTask,
 });
 
 export const deleteTaskError = error => ({
